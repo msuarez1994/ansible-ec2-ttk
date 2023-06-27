@@ -1,0 +1,77 @@
+---
+- hosts: all
+  become: true
+  gather_facts: false
+  vars:
+    API_BASE_URL: "ec2-52-15-144-92.us-east-2.compute.amazonaws.com:9550"
+    user: ubuntu
+
+  tasks:
+    - name: Check if file already exists
+      command: ls /opt/ml-core-test-harness/
+      register: file_exists
+      ignore_errors: yes
+
+    # - name: create file for user
+    #   file:
+    #     path: /home/{{ user }}/myfile
+    #     state: touch
+    #   when: file_exists is failed
+
+    - name: show message if file exists
+      debug:
+        msg: The user file already exists.
+      when: file_exists is succeeded
+
+  # tasks:
+    # - name: Install aptitude
+    #   apt:
+    #     name: aptitude
+    #     state: latest
+    #     update_cache: true
+
+    # - name: Install required system packages
+    #   apt:
+    #     pkg:
+    #       - apt-transport-https
+    #       - ca-certificates
+    #       - curl
+    #       - software-properties-common
+    #       - python3-pip
+    #       - virtualenv
+    #       - python3-setuptools
+    #     state: latest
+    #     update_cache: true
+
+    # - name: Add Docker GPG apt Key
+    #   apt_key:
+    #     url: https://download.docker.com/linux/ubuntu/gpg
+    #     state: present
+
+    # - name: Add Docker Repository
+    #   apt_repository:
+    #     repo: deb https://download.docker.com/linux/ubuntu focal stable
+    #     state: present
+
+    # - name: Install docker-ce
+    #   apt:
+    #     name: docker-ce
+    #     state: latest
+    #     update_cache: true
+
+    # - name: Clone a github repository TTK
+    #   git:
+    #    repo: https://github.com/mojaloop/ml-core-test-harness.git
+    #    dest: /opt/ml-core-test-harness
+    #    clone: yes
+
+    # - name: Replace envarionment {{ API_BASE_URL }} in docker-compose.yml
+    #   shell:
+    #     cmd: "sed -i 's/localhost:9550/{{ API_BASE_URL }}/g' docker-compose.yml"
+    #     chdir: /opt/ml-core-test-harness/
+
+    # - name: Run container
+    #   become: True
+    #   shell:
+    #     cmd: "docker compose --profile all-services --profile ttk-provisioning up -d"
+    #     chdir: /opt/ml-core-test-harness/
