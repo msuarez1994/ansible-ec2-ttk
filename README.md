@@ -1,6 +1,6 @@
 # Despliegue automatizado de TTK con Ansible en instancia EC2
 ## Pre-requisitos
-- ansible - https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html
+- Ansible - https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html
 
 ## Valores que se deben modificar antes de lanzar el playbook
 ### Paso 1

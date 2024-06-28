@@ -3,7 +3,7 @@
   become: true
   gather_facts: true
   vars:
-    API_BASE_URL: "ec2-52-15-144-92.us-east-2.compute.amazonaws.com:9550"
+    API_BASE_URL: "example.com:9550" # Replace with your Hostname or IP Address
 
   tasks:
     - name: Install aptitude

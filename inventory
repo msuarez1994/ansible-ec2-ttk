@@ -1,3 +1,7 @@
 [ec2]
-
+# add the public DNS of the EC2 instance or the public IP address of the EC2 instance
 ec2-52-15-144-92.us-east-2.compute.amazonaws.com
+
+[localservers]
+192.168.1.101
+192.168.1.102
